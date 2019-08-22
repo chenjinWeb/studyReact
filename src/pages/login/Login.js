@@ -34,6 +34,7 @@ class Login extends Component {
         login_(data).then(res => {
             if (res.success == 200) {
                 alert('登录成功!')
+                this.props.history.push('/index')
             } else {
                 this.setState({
                     code: ''
