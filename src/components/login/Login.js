@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
+import { login_ } from "../../request/login.js"
 import '../../assets/css/login.scss'
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            imgSrc:''
+        };
     }
+
+    componentDidMount=()=>{
+        let src = `/api/verify/code?v=${new Date().getTime()}` 
+        this.setState({
+            imgSrc:src
+        })
+    }
+
+    login(){
+        login_({
+            account: 'admin',
+            password: '1243',
+            code: 'asdw'
+        }).then(res=>{
+
+        })
+    }
+
     render() {
         return (
             <div className="login">
@@ -47,14 +68,14 @@ class Login extends Component {
                         <i className="mat-icon">&#xe656;</i>
 
                             <div style={{position: 'absolute', width: '30%', right: 0, height: '42px', top: '0px'}}>
-                                {/* <img style="{{width: 100%; height: 100%; cursor: pointer}}" /> */}
+                                <img src={this.state.imgSrc} style={{width: '100%', height: '100%', cursor: 'pointer'}} />
                             </div>
 
                         </div>
 
                     </div>
 
-                    <div className='login_btn'>登录</div>
+                    <div className='login_btn' onClick={this.login}>登录</div>
 
                 </div>
 
