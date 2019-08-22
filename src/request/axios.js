@@ -14,6 +14,9 @@ instance.interceptors.request.use((config)=>{
 
 instance.interceptors.response.use((response)=>{
     console.info(response)
+    if(response.data.success == 500){
+        alert(response.data.errorText)
+    }
     return response.data
 },(error)=>{
     return Promise.reject(error);

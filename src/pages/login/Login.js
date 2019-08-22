@@ -15,6 +15,10 @@ class Login extends Component {
     }
 
     componentDidMount(){
+        this.initCode();
+    }
+
+    initCode=()=>{
         let src = `/api/verify/code?v=${new Date().getTime()}` 
         this.setState({
             imgSrc:src
@@ -28,7 +32,14 @@ class Login extends Component {
             code: this.state.code
         }
         login_(data).then(res=>{
-            
+            if(res.success == 200){
+                alert('登录成功!')
+            }else{
+                this.setState({
+                    code:''
+                })
+                this.initCode();
+            }
         })
     }
 
