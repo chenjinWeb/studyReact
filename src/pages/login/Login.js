@@ -7,57 +7,57 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            account:'',
-            password:'',
-            code:'',
-            imgSrc:''
+            account: '',
+            password: '',
+            code: '',
+            imgSrc: ''
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.initCode();
     }
 
-    initCode=()=>{
-        let src = `/api/verify/code?v=${new Date().getTime()}` 
+    initCode = () => {
+        let src = `/api/verify/code?v=${new Date().getTime()}`
         this.setState({
-            imgSrc:src
+            imgSrc: src
         })
     }
 
-    login=()=>{
+    login = () => {
         let data = {
             account: this.state.account,
             password: md5(this.state.password),
             code: this.state.code
         }
-        login_(data).then(res=>{
-            if(res.success == 200){
+        login_(data).then(res => {
+            if (res.success == 200) {
                 alert('登录成功!')
-            }else{
+            } else {
                 this.setState({
-                    code:''
+                    code: ''
                 })
                 this.initCode();
             }
         })
     }
 
-    inputChange=(e)=>{
+    inputChange = (e) => {
         this.setState({
-            account:e.target.value
+            account: e.target.value
         })
     }
 
-    passChange=(e)=>{
+    passChange = (e) => {
         this.setState({
-            password:e.target.value
+            password: e.target.value
         })
     }
 
-    codeChange=(e)=>{
+    codeChange = (e) => {
         this.setState({
-            code:e.target.value
+            code: e.target.value
         })
     }
 
@@ -90,19 +90,19 @@ class Login extends Component {
                         <div className="login_input">
 
                             <input type="password" placeholder="请输入密码" value={this.state.password} onChange={this.passChange} />
-    
-                        <i className="mat-icon">&#xe644;</i>
+
+                            <i className="mat-icon">&#xe644;</i>
 
                         </div>
 
                         <div className="login_input login_code">
 
                             <input type="text" placeholder="请输入验证码" value={this.state.code} onChange={this.codeChange} />
-    
-                        <i className="mat-icon">&#xe656;</i>
 
-                            <div style={{position: 'absolute', width: '30%', right: 0, height: '42px', top: '0px'}}>
-                                <img src={this.state.imgSrc} style={{width: '100%', height: '100%', cursor: 'pointer'}} alt="code" />
+                            <i className="mat-icon">&#xe656;</i>
+
+                            <div style={{ position: 'absolute', width: '30%', right: 0, height: '42px', top: '0px' }}>
+                                <img src={this.state.imgSrc} style={{ width: '100%', height: '100%', cursor: 'pointer' }} alt="code" />
                             </div>
 
                         </div>
@@ -113,7 +113,7 @@ class Login extends Component {
 
                 </div>
 
-                <div style={{textAlign: 'center', height: '30px', width: '100%', lineHeight: '30px', position: 'absolute', bottom: '120px', color: '#999999', fontSize: '14px'}}>
+                <div style={{ textAlign: 'center', height: '30px', width: '100%', lineHeight: '30px', position: 'absolute', bottom: '120px', color: '#999999', fontSize: '14px' }}>
                     Copyright (C) 2019 zcdsp.com All Rights Reserved. 沪ICP备09044414号
                 </div>
 
