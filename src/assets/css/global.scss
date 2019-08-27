@@ -1,0 +1,46 @@
+
+.global_top{
+    height: 64px;
+    background: #282b3e;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+}
+
+.global_left{
+    position: absolute;
+    height: 100%;
+    width: 80px;
+    padding-top: 64px;
+    background: #292a2c;
+    z-index: 99;
+    .global_left_item{
+        height: 76px;
+        text-align: center;
+        padding-top: 7px;
+        cursor: pointer;
+        color: #8c8c8c;
+        .global_left_item_icon{
+            span{
+                font-size: 26px;
+            }
+        }
+        .global_left_item_text{
+            line-height: 32px;
+        }
+        &:hover{
+            color: #2e90ff;
+        }
+    }
+}
+
+.global_content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding-left: 80px;
+    padding-top: 64px;
+}
+

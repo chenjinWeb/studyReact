@@ -25,6 +25,12 @@ class Login extends Component {
         })
     }
 
+    downLogin=(e)=>{
+        if(e.keyCode == 13){
+            this.login();
+        }
+    }
+
     login = () => {
         let data = {
             account: this.state.account,
@@ -32,9 +38,8 @@ class Login extends Component {
             code: this.state.code
         }
         login_(data).then(res => {
-            if (res.success == 200) {
-                alert('登录成功!')
-                this.props.history.push('/index')
+            if (res.success === 200) {
+                this.props.history.push('/global/index')
             } else {
                 this.setState({
                     code: ''
@@ -98,12 +103,12 @@ class Login extends Component {
 
                         <div className="login_input login_code">
 
-                            <input type="text" placeholder="请输入验证码" value={this.state.code} onChange={this.codeChange} />
+                            <input type="text" placeholder="请输入验证码" value={this.state.code} onChange={this.codeChange} onKeyDown={this.downLogin} />
 
                             <i className="mat-icon">&#xe656;</i>
 
                             <div style={{ position: 'absolute', width: '30%', right: 0, height: '42px', top: '0px' }}>
-                                <img src={this.state.imgSrc} style={{ width: '100%', height: '100%', cursor: 'pointer' }} alt="code" />
+                                <img src={this.state.imgSrc} style={{ width: '100%', height: '100%', cursor: 'pointer' }} alt="code" onClick={this.initCode} />
                             </div>
 
                         </div>
